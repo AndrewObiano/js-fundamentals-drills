@@ -507,6 +507,13 @@ objectsToTuples = function(object1, object2){
  * @return {Object}
  */
 var mapArrayValues;
+mapArrayValues = function(array){
+  let testObj = {};
+  for(i=0; i<array.length; i++){
+    testObj[array[i]] = true;
+  }
+  return testObj;
+}
 
 /* #mapStringCounts
  *
@@ -518,6 +525,17 @@ var mapArrayValues;
  * @return {Object}
  */
 var mapStringCounts;
+mapStringCounts = function(array){
+  let testObj = {};
+  for(i=0; i<array.length; i++){
+    if(array[i].length >= 5){
+      testObj[array[i]] = true;
+    }else{
+      testObj[array[i]] = false;
+    }
+  }
+  return testObj;
+}
 
 /* #arrayToObjectNums
  *
@@ -528,6 +546,9 @@ var mapStringCounts;
  * @return {Object}
  */
 var arrayToObjectNums;
+arrayToObjectNums = function(array){
+  return mapArrayValues(array);
+}
 
 /* #stringToKeys
  *
@@ -537,6 +558,14 @@ var arrayToObjectNums;
  * @return {Object}
  */
 var stringToKeys;
+stringToKeys = function(string){
+  let strArr = string.split('');
+  let testObj = {};
+  for(i=0; i<strArr.length; i++){
+    testObj[strArr[i]] = true;
+  }
+  return testObj;
+}
 
 /* #charCountMap
  *
@@ -547,6 +576,13 @@ var stringToKeys;
  * @return {Object}
  */
 var charCountMap;
+charCountMap = function(array){
+  let testObj = {};
+  for(i=0; i<array.length; i++){
+    testObj[array[i]] = array[i].length;
+  }
+  return testObj;
+}
 
 /* #frequencyMap
  *
@@ -556,6 +592,19 @@ var charCountMap;
  * @return {Object}
  */
 var frequencyMap;
+frequencyMap = function(array){
+  let testObj = {};
+  let occurence = 1;
+  for(i=0; i<array.length; i++){
+    if(array[i] !== array[i+1]){
+      testObj[array[i]] = occurence;
+      occurence = 1;
+    }else{
+      testObj[array[i]] = occurence++
+    }
+  }
+  return testObj;
+}
 
 /* #tupleConvertToObject
  *
@@ -566,6 +615,13 @@ var frequencyMap;
  * @return {Object}
  */
 var tupleConvertToObject;
+tupleConvertToObject = function(array){
+  let testObj = {};
+  for(i=0; i<array.length; i++){
+    testObj[array[i][0]] = array[i][1];
+  }
+  return testObj;
+}
 
 
 module.exports = {
@@ -601,11 +657,11 @@ module.exports = {
   arrayToObject: arrayToObject,
   arraysToObject: arraysToObject,
   objectsToTuples: objectsToTuples,
-  mapArrayValues: null,
-  mapStringCounts: null,
-  arrayToObjectNums: null,
-  stringToKeys: null,
-  charCountMap: null,
-  frequencyMap: null,
-  tupleConvertToObject: null
+  mapArrayValues: mapArrayValues,
+  mapStringCounts: mapStringCounts,
+  arrayToObjectNums: arrayToObjectNums,
+  stringToKeys: stringToKeys,
+  charCountMap: charCountMap,
+  frequencyMap: frequencyMap,
+  tupleConvertToObject: tupleConvertToObject
 }
